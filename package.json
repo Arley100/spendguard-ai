@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "inspect": "tsx scripts/inspect.ts",
+    "test": "tsx scripts/test-classify.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
