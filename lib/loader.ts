@@ -71,7 +71,9 @@ export async function loadDatabase(sourcePath: string): Promise<Database> {
     "dist",
     "sql-wasm.wasm"
   );
-  const SQL = await initSqlJs({ wasmBinary: readFileSync(wasmPath) });
+  const wasmBuffer = readFileSync(wasmPath);
+  const wasmBytes = new Uint8Array(wasmBuffer);
+  const SQL = await initSqlJs({ wasmBinary: wasmBytes.buffer as ArrayBuffer });
   const db = new SQL.Database();
 
   const columns = Object.keys(rows[0]);
