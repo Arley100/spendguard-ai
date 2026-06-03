@@ -8,6 +8,7 @@
     "test": "tsx scripts/test-classify.ts",
     "test:queries": "tsx scripts/test-queries.ts",
     "test:risk": "tsx scripts/test-risk.ts",
+    "test:ask": "tsx scripts/test-ask.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
