@@ -10,6 +10,7 @@
     "test:risk": "tsx scripts/test-risk.ts",
     "test:ask": "tsx scripts/test-ask.ts",
     "test:queue": "tsx scripts/test-queue.ts",
+    "test:threshold": "tsx scripts/test-threshold.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

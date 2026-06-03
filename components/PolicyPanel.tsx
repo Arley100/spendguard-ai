@@ -1,9 +1,11 @@
+import type { ReactNode } from "react";
 import styles from "./PolicyPanel.module.css";
 
 interface PolicyPanelProps {
   over50Count: number;
   debitCount: number;
   percentage: number;
+  slider?: ReactNode;
 }
 
 // Rules stated verbatim in substance from the Brim expense policy document.
@@ -32,7 +34,7 @@ const OTHER_RULES: { rule: string; note: string }[] = [
   },
 ];
 
-export default function PolicyPanel({ over50Count, debitCount, percentage }: PolicyPanelProps) {
+export default function PolicyPanel({ over50Count, debitCount, percentage, slider }: PolicyPanelProps) {
   const fmt = (n: number) => n.toLocaleString("en-CA");
   return (
     <div className={styles.panel}>
@@ -73,6 +75,7 @@ export default function PolicyPanel({ over50Count, debitCount, percentage }: Pol
         Only the $50 threshold is measurable from the transaction data; the others are
         stated for completeness and marked as not measurable from this dataset alone.
       </div>
+      {slider}
     </div>
   );
 }

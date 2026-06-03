@@ -1,14 +1,16 @@
 import AskPanel from "../components/AskPanel";
 import PolicyPanel from "../components/PolicyPanel";
+import ThresholdSlider from "../components/ThresholdSlider";
 import ReviewQueue from "../components/ReviewQueue";
 import { isRealData, getDb } from "../lib/db";
-import { debitsOver50 } from "../lib/risk";
+import { debitsOver50, thresholdCurve } from "../lib/risk";
 import { buildReviewQueue } from "../lib/queue";
 
 export default async function Home() {
   const realData = isRealData();
   const db = await getDb();
   const policy = debitsOver50(db);
+  const curve = thresholdCurve(db);
   const queue = buildReviewQueue(db, policy.over50Count, policy.debitCount);
 
   return (
@@ -35,6 +37,7 @@ export default async function Home() {
         over50Count={policy.over50Count}
         debitCount={policy.debitCount}
         percentage={policy.percentage}
+        slider={<ThresholdSlider curve={curve} />}
       />
       <ReviewQueue
         highRisk={queue.highRisk}

@@ -117,3 +117,24 @@ export function sameDayClusters(db: Database): ClusterGroup[] {
     }))
     .sort((a, b) => b.count - a.count || b.total - a.total);
 }
+// Policy-simulation curve: for each $10 step from $50 to $500, the number of
+// Debits strictly over that threshold. Every value is computed by the store
+// (same strict > comparison as debitsOver50), so the slider only ever displays
+// store-computed counts; the client interpolates nothing, it looks up.
+export interface ThresholdPoint {
+  threshold: number;
+  count: number;
+}
+
+export function thresholdCurve(db: Database): ThresholdPoint[] {
+  const points: ThresholdPoint[] = [];
+  for (let t = 50; t <= 500; t += 10) {
+    const c = db.exec(
+      `SELECT COUNT(*) FROM transactions
+       WHERE "Debit or Credit" = 'Debit' AND CAST("Transaction Amount" AS REAL) > ?`,
+      [t]
+    )[0].values[0][0] as number;
+    points.push({ threshold: t, count: c });
+  }
+  return points;
+}
