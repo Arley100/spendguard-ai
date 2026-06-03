@@ -6,6 +6,7 @@
     "dev": "next dev",
     "inspect": "tsx scripts/inspect.ts",
     "test": "tsx scripts/test-classify.ts",
+    "test:queries": "tsx scripts/test-queries.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
