@@ -1,0 +1,98 @@
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  max-width: 760px;
+  width: 100%;
+}
+
+.heading { font-size: 1.05rem; font-weight: 650; color: var(--text); margin-bottom: 4px; }
+.sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+
+.tierRow { display: flex; gap: 12px; margin-bottom: 22px; }
+.tierCard {
+  flex: 1;
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+}
+.tierCardCleared { background: var(--cleared-soft); border-color: var(--cleared); }
+.tierCardDoc { background: var(--doc-required-soft); border-color: var(--doc-required); }
+.tierCardHigh { background: var(--high-risk-soft); border-color: var(--high-risk); }
+
+.tierCount { font-size: 1.5rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+.tierLabel { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 6px; }
+.tierLabelCleared { color: var(--cleared); }
+.tierLabelDoc { color: var(--doc-required); }
+.tierLabelHigh { color: var(--high-risk); }
+.tierDesc { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+
+.caveat {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+
+.queueListLabel { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); margin-bottom: 10px; }
+
+.item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.itemHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  background: var(--surface);
+  border: none;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+}
+.itemHeader:hover { background: var(--surface-2); }
+
+.badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.badgeDup { background: var(--high-risk-soft); color: var(--high-risk); }
+.badgeCluster { background: var(--doc-required-soft); color: var(--doc-required); }
+.badgeOp { background: var(--surface-2); color: var(--text-faint); border: 1px solid var(--border); }
+
+.itemMerchant { font-weight: 600; color: var(--text); font-size: 0.9rem; }
+.itemMeta { font-size: 0.8rem; color: var(--text-muted); margin-left: auto; white-space: nowrap; }
+
+.itemBody { padding: 0 14px 14px 14px; background: var(--surface); }
+.itemReason { font-size: 0.85rem; color: var(--text); line-height: 1.5; margin: 0 0 10px 0; }
+
+.evidenceTable { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.evidenceTable th {
+  text-align: left;
+  color: var(--text-faint);
+  font-weight: 600;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+}
+.evidenceTable td { padding: 4px 8px; color: var(--text); border-bottom: 1px solid var(--border); }
+.evidenceTable td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.moreNote { font-size: 0.8rem; color: var(--text-faint); margin-top: 14px; }

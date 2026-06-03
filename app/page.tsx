@@ -1,12 +1,15 @@
 import AskPanel from "../components/AskPanel";
 import PolicyPanel from "../components/PolicyPanel";
+import ReviewQueue from "../components/ReviewQueue";
 import { isRealData, getDb } from "../lib/db";
 import { debitsOver50 } from "../lib/risk";
+import { buildReviewQueue } from "../lib/queue";
 
 export default async function Home() {
   const realData = isRealData();
   const db = await getDb();
   const policy = debitsOver50(db);
+  const queue = buildReviewQueue(db, policy.over50Count, policy.debitCount);
 
   return (
     <main
@@ -32,6 +35,12 @@ export default async function Home() {
         over50Count={policy.over50Count}
         debitCount={policy.debitCount}
         percentage={policy.percentage}
+      />
+      <ReviewQueue
+        highRisk={queue.highRisk}
+        documentationCount={queue.documentationRequired.count}
+        clearedCount={queue.cleared.count}
+        caveat={queue.caveat}
       />
     </main>
   );
