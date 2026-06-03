@@ -1,6 +1,8 @@
 import AskPanel from "../components/AskPanel";
+import { isRealData } from "../lib/db";
 
 export default function Home() {
+  const realData = isRealData();
   return (
     <main
       style={{
@@ -20,7 +22,7 @@ export default function Home() {
           Policy reality check and spend intelligence for business card programs.
         </p>
       </header>
-      <AskPanel />
+      <AskPanel syntheticData={!realData} />
     </main>
   );
 }

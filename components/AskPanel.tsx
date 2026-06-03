@@ -30,7 +30,7 @@ const SUGGESTIONS = [
   "Show duplicate-charge candidates",
 ];
 
-export default function AskPanel() {
+export default function AskPanel({ syntheticData = false }: { syntheticData?: boolean }) {
   const [question, setQuestion] = useState("");
   const [history, setHistory] = useState<Turn[]>([]);
   const [answer, setAnswer] = useState<AskResponse | null>(null);
@@ -66,6 +66,11 @@ export default function AskPanel() {
 
   return (
     <div className={styles.panel}>
+      {syntheticData && (
+        <div className={styles.syntheticNotice}>
+          Demo mode: showing synthetic sample data. The full analysis runs on the real statement locally.
+        </div>
+      )}
       <div className={styles.heading}>Ask your spend data</div>
       <div className={styles.sub}>
         Plain-English questions. Every number is computed from the statement, never invented.

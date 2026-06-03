@@ -152,3 +152,12 @@
 
 .status { margin-top: 18px; font-size: 0.9rem; color: var(--text-muted); }
 .error { color: var(--high-risk); }
+.syntheticNotice {
+  font-size: 0.78rem;
+  color: var(--doc-required);
+  background: var(--doc-required-soft);
+  border: 1px solid var(--doc-required);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin-bottom: 16px;
+}
