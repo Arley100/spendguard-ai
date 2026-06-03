@@ -1,11 +1,26 @@
-﻿export default function Home() {
+import AskPanel from "../components/AskPanel";
+
+export default function Home() {
   return (
-    <main style={{ maxWidth: 960, margin: "0 auto", padding: "48px 24px", fontFamily: "system-ui, sans-serif" }}>
-      <h1 style={{ fontSize: 28, fontWeight: 600 }}>SpendGuard AI</h1>
-      <p style={{ color: "#555", marginTop: 8 }}>Policy Reality Check for Business Card Programs</p>
-      <section style={{ marginTop: 40, padding: 24, border: "1px solid #e2e2e2", borderRadius: 8, color: "#888" }}>
-        Dashboard placeholder. Features arrive in later tickets.
-      </section>
+    <main
+      style={{
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "48px 24px",
+        gap: 28,
+      }}
+    >
+      <header style={{ maxWidth: 760, width: "100%" }}>
+        <h1 style={{ fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text)" }}>
+          SpendGuard AI
+        </h1>
+        <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", marginTop: 4 }}>
+          Policy reality check and spend intelligence for business card programs.
+        </p>
+      </header>
+      <AskPanel />
     </main>
   );
 }

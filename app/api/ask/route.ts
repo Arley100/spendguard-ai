@@ -78,6 +78,28 @@ async function aiNarrate(apiKey: string, question: string, result: QueryResult):
   return (json.content?.[0]?.text ?? "").trim();
 }
 
+// Truth-rule guard for the live AI path: every number that appears in the
+// narration must also appear in the computed result. If the model introduced
+// any figure not in the result (a sum, a guess, a hallucination), the AI
+// narration is rejected and we fall back to the verified template narration.
+function numbersIn(text: string): string[] {
+  const matches = text.match(/\d[\d,]*\.?\d*/g) ?? [];
+  return matches.map((m) => m.replace(/,/g, "")).filter((m) => m.length > 0);
+}
+
+function narrationIsFaithful(narration: string, result: QueryResult): boolean {
+  const resultNums = new Set(numbersIn(JSON.stringify(result.data)));
+  // Allow small integers (0-31) that commonly appear as counts/ranks/phrasing
+  // and are not financial figures; the financial figures are what must match.
+  for (const n of numbersIn(narration)) {
+    if (resultNums.has(n)) continue;
+    const asNum = Number(n);
+    if (Number.isInteger(asNum) && asNum >= 0 && asNum <= 31 && !n.includes(".")) continue;
+    return false;
+  }
+  return true;
+}
+
 export async function POST(req: NextRequest) {
   let body: { question?: string; history?: Turn[] };
   try {
@@ -117,8 +139,15 @@ export async function POST(req: NextRequest) {
   let narrationSource: "ai" | "template";
   if (apiKey && parsedByAi && result.metric !== "unsupported") {
     try {
-      narration = await aiNarrate(apiKey, question, result);
-      narrationSource = "ai";
+      const aiText = await aiNarrate(apiKey, question, result);
+      if (narrationIsFaithful(aiText, result)) {
+        narration = aiText;
+        narrationSource = "ai";
+      } else {
+        // AI introduced a number not in the result: reject, use verified template.
+        narration = templateNarrate(result);
+        narrationSource = "template";
+      }
     } catch {
       narration = templateNarrate(result);
       narrationSource = "template";

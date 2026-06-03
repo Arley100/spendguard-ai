@@ -1,17 +1,59 @@
+/* SpendGuard AI design tokens.
+   Calm, trustworthy finance aesthetic: a soft blue page base with crisp white
+   surfaces. Color carries meaning (SPEC Section 7): the teal accent is reserved
+   for AI-generated insight; green/amber/red are reserved for the risk tiers
+   (used from Ticket 8 on). Everything is a CSS variable so a dark theme is a
+   later one-evening addition; we intentionally do NOT auto-flip on the OS dark
+   preference yet, so the designed light theme stays stable. */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base atmosphere: soft blue page, white content surfaces */
+  --page-bg: #eef3f9;          /* faint blue page wash */
+  --surface: #ffffff;          /* cards, panels */
+  --surface-2: #f6f9fc;        /* subtle inset / secondary surface */
+  --border: #d8e1ec;           /* hairline borders */
+  --border-strong: #bcc9da;
+
+  /* Text (AA contrast on the surfaces above) */
+  --text: #16202e;             /* primary text, ~13:1 on white */
+  --text-muted: #5a6b80;       /* secondary text, ~4.7:1 on white */
+  --text-faint: #8493a6;       /* labels, ~3:1 (large text only) */
+
+  /* Brand base blue (structure/chrome, NOT a signal color) */
+  --brand: #2f6fb0;
+  --brand-soft: #dce9f6;
+
+  /* AI accent: reserved strictly for AI-generated narration + mode indicator */
+  --ai: #0f7d7d;               /* deep teal, distinct from the base blue */
+  --ai-soft: #d7efef;
+
+  /* Semantic risk tiers (reserved; used from Ticket 8) */
+  --cleared: #2e7d4f;          /* green */
+  --cleared-soft: #dcf0e4;
+  --doc-required: #b87514;     /* amber */
+  --doc-required-soft: #f6ecd6;
+  --high-risk: #b3402f;        /* red */
+  --high-risk-soft: #f6ddd8;
+
+  /* Geometry */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 1px 2px rgba(22, 32, 46, 0.06), 0 4px 16px rgba(22, 32, 46, 0.05);
+  --gap: 16px;
+
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html {
   height: 100%;
+  color-scheme: light;
 }
 
 html,
@@ -24,17 +66,12 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--page-bg);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  line-height: 1.5;
 }
 
 a {
@@ -42,8 +79,20 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Visible keyboard focus everywhere (accessibility) */
+:focus-visible {
+  outline: 2px solid var(--ai);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Respect reduced-motion preference (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
