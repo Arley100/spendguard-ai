@@ -1,8 +1,13 @@
 import AskPanel from "../components/AskPanel";
-import { isRealData } from "../lib/db";
+import PolicyPanel from "../components/PolicyPanel";
+import { isRealData, getDb } from "../lib/db";
+import { debitsOver50 } from "../lib/risk";
 
-export default function Home() {
+export default async function Home() {
   const realData = isRealData();
+  const db = await getDb();
+  const policy = debitsOver50(db);
+
   return (
     <main
       style={{
@@ -23,6 +28,11 @@ export default function Home() {
         </p>
       </header>
       <AskPanel syntheticData={!realData} />
+      <PolicyPanel
+        over50Count={policy.over50Count}
+        debitCount={policy.debitCount}
+        percentage={policy.percentage}
+      />
     </main>
   );
 }

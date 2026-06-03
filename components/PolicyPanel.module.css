@@ -1,0 +1,103 @@
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  max-width: 760px;
+  width: 100%;
+}
+
+.heading {
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.realityBlock {
+  background: var(--doc-required-soft);
+  border: 1px solid var(--doc-required);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  margin-bottom: 22px;
+}
+
+.realityRule {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--doc-required);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.realityStat {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.realityPct {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.realityCount {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.realityImplication {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.55;
+  margin-top: 10px;
+}
+
+.rulesLabel {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+}
+
+.ruleList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ruleItem {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+  padding-left: 14px;
+  border-left: 2px solid var(--border-strong);
+}
+
+.ruleNote {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-top: 2px;
+}
+
+.sourceNote {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
