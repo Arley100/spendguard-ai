@@ -96,3 +96,16 @@
 .evidenceTable td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 .moreNote { font-size: 0.8rem; color: var(--text-faint); margin-top: 14px; }
+.tierUnit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0;
+}
+
+.clarifier {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0 0 16px 0;
+}

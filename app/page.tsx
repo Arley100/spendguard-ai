@@ -40,7 +40,8 @@ export default async function Home() {
         slider={<ThresholdSlider curve={curve} />}
       />
       <ReviewQueue
-        highRisk={queue.highRisk}
+        highRisk={queue.highRisk.slice(0, 50)}
+        totalHighRiskCount={queue.highRisk.length}
         documentationCount={queue.documentationRequired.count}
         clearedCount={queue.cleared.count}
         caveat={queue.caveat}

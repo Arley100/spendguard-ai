@@ -5,7 +5,8 @@ import styles from "./ReviewQueue.module.css";
 import type { QueueItem } from "../lib/queue";
 
 interface ReviewQueueProps {
-  highRisk: QueueItem[];
+  highRisk: QueueItem[];          // already sliced server-side to the visible top N
+  totalHighRiskCount: number;     // full count across all groups (for the hidden-count note)
   documentationCount: number;
   clearedCount: number;
   caveat: string;
@@ -17,17 +18,16 @@ const fmtInt = (n: number) => n.toLocaleString("en-CA");
 
 const VISIBLE = 25;
 
-export default function ReviewQueue({ highRisk, documentationCount, clearedCount, caveat }: ReviewQueueProps) {
+export default function ReviewQueue({ highRisk, totalHighRiskCount, documentationCount, clearedCount, caveat }: ReviewQueueProps) {
   const [open, setOpen] = useState<number | null>(null);
   const shown = highRisk.slice(0, VISIBLE);
-  const remaining = highRisk.length - shown.length;
+  const remaining = totalHighRiskCount - shown.length;
 
   return (
     <div className={styles.panel}>
       <div className={styles.heading}>Review queue</div>
       <div className={styles.sub}>
-        Every debit routed to one of three tiers. Most spend clears automatically; only genuine
-        outliers reach a person.
+        Most spend clears automatically; only genuine outliers reach a person.
       </div>
 
       <div className={styles.tierRow}>
@@ -43,10 +43,16 @@ export default function ReviewQueue({ highRisk, documentationCount, clearedCount
         </div>
         <div className={`${styles.tierCard} ${styles.tierCardHigh}`}>
           <div className={`${styles.tierLabel} ${styles.tierLabelHigh}`}>High-risk review</div>
-          <div className={styles.tierCount}>{fmtInt(highRisk.length)}</div>
+          <div className={styles.tierCount}>{fmtInt(totalHighRiskCount)} <span className={styles.tierUnit}>groups</span></div>
           <div className={styles.tierDesc}>Duplicate and same-day repeat candidates.</div>
         </div>
       </div>
+
+      <p className={styles.clarifier}>
+        Cleared and Documentation required split the {fmtInt(clearedCount + documentationCount)} debits
+        by the $50 rule. High-risk review is a separate lens: repeat-pattern groups flagged for a look,
+        many of them already counted in the tiers above.
+      </p>
 
       <div className={styles.caveat}>{caveat}</div>
 
