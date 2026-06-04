@@ -153,7 +153,7 @@ function ResultView({ answer }: { answer: AskResponse }) {
       <div>
         <div className={styles.bigLabel}>{result.label}</div>
         <div className={styles.chartWrap}>
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={280}>
             {isMonth ? (
               <LineChart data={chartData} margin={{ top: 10, right: 16, left: 8, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
