@@ -91,3 +91,9 @@ The optional AI narration path activates when `ANTHROPIC_API_KEY` is set in `.en
 ## Data source selection
 
 The app loads the real sample dataset when present. If it is absent (for example in an environment where the file was not deployed), it falls back to a small committed synthetic dataset and labels the interface as demo mode, so the tool degrades gracefully rather than failing.
+
+## License
+
+This project’s source code is released under the MIT License.
+
+The Brim challenge materials, expense policy, and original challenge dataset are not relicensed by this repository. Any included synthetic/demo data is for demonstration only.
