@@ -2,7 +2,7 @@
 
 Spend intelligence and policy reality check for business card programs.
 
-Live demo: https://spendguard-ai-lovat.vercel.app
+**[Live Demo](https://spendguard-ai-lovat.vercel.app)** · **[Devpost](https://devpost.com/software/spendguard-ai)**
 
 ## What it does
 
@@ -94,6 +94,6 @@ The app loads the real sample dataset when present. If it is absent (for example
 
 ## License
 
-This project’s source code is released under the MIT License.
+This project's source code is released under the MIT License.
 
 The Brim challenge materials, expense policy, and original challenge dataset are not relicensed by this repository. Any included synthetic/demo data is for demonstration only.
